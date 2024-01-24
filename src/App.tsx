@@ -1,10 +1,14 @@
 import './App.css'
+import { Panel } from './components/Panel/Panel'
+
 
 function App() {
 
+
+
   return (
       <>
-        <div className='font-bold'>Todolist</div>
+        <Panel />
       </>
   )
 }
