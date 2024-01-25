@@ -1,11 +1,11 @@
-// import { FC } from "react"
+import { FC } from "react"
 
-// interface IOptionProps {
-//    category: string
-// }
+interface IOptionProps extends React.ComponentPropsWithRef<'option'> {
+   category: string
+}
 
-// export const Option:FC<IOptionProps> = (category) => {
-//    return (
-//       <option>{category}</option>
-//    )
-// }
+export const Option:FC<IOptionProps> = ({category}) => {
+   return (
+      <option >{category}</option>
+   )
+}

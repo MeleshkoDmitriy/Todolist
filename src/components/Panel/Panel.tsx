@@ -7,13 +7,7 @@ import { Option } from './Option/Option';
 
 export const Panel = () => {
 
-   const {data, isSuccess, isLoading} = useContext(TodosContext)
-
-   if(data) {
-      data.forEach(element => {
-         console.log(element.category)
-      });
-   }
+   const {data, isSuccess, isLoading, todoCount} = useContext(TodosContext)
 
    return (
       <div className={styles.wrapper}>
@@ -29,8 +23,13 @@ export const Panel = () => {
             </div>
             <div className={styles.category}>
                <label htmlFor=''>Category</label>
-               <select >
-
+               <select className={styles.select}>
+                  {isLoading && <Option className={styles.option} category='Loading...'/>}
+                  {isSuccess && data?.map((categoryObj) => {
+                     return <Option className={styles.option} 
+                                    key={categoryObj.id} 
+                                    category={categoryObj.category}/>
+                  })}
                </select>
             </div>
          </form>
