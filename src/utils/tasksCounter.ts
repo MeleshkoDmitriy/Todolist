@@ -1,5 +1,5 @@
-import {Task} from '../types'
+import {TTask} from '../types'
 
-export const tasksCounter = (tasks:Task[]) => {
+export const tasksCounter = (tasks:TTask[]) => {
    return tasks.length;
 }

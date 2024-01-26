@@ -1,8 +1,8 @@
 import { useContext } from "react"
 import { Header } from "../components/Header/Header"
 import { TodosContext } from "../context/context"
-import { Link } from "react-router-dom"
 import { Item } from "../components/Item/Item"
+import { Link } from "react-router-dom"
 
 
 
@@ -19,7 +19,7 @@ export const HomePage = () => {
          <Header todoCount={todoCount}/>
          <div>Home page text</div>
          {isSuccess && data?.map((obj) => {
-            return <Item key={obj.id} {...obj}/>
+            return <Link key={obj.id} to={obj.category}><Item  {...obj}/></Link>
          })}
       </section>
    )

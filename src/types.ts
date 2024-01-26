@@ -1,12 +1,12 @@
-export type Task = {
+export type TTask = {
    id: number,
    title: string,
    completed: boolean
 }
 
-export type Todo = {
+export type TTodo = {
    id: number,
    category: string,
    link: string,
-   tasks: Task[]
+   tasks: TTask[]
 }

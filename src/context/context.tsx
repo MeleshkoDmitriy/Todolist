@@ -10,7 +10,7 @@ export const TodosProvider = ({children}) => {
 
    // const queryClient = useQueryClient()
 
-   const [data, setData] = useState(null)
+   const [data, setData] = useState([])
    const [todoCount, setTodoCount] = useState(0)
 
    const {data: responce, isLoading, isSuccess} = useQuery({
