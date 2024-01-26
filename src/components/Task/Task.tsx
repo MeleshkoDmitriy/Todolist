@@ -1,22 +1,28 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { TTask } from '../../types'
 import styles from './Task.module.scss'
+import { TodosContext } from '../../context/context';
 
-export const Task = (task:TTask) => {
+export const Task = (task) => {
 
-   const {id, title, completed} = task;
 
-   const [isChecked, setChecked] = useState(completed)
+   const [isChecked, setChecked] = useState(task.completed);
+
+   const {toggleCkeckMutation} = useContext(TodosContext)
 
    const isCheckedClass = isChecked ? `${styles.isCheckedClass}` : '' ;
 
-
+   const handlerCheck = () => {
+      console.log(task)
+      toggleCkeckMutation(task);
+      setChecked(prev => !prev)
+   }
    
    return (
-      <li key={id}>
-         <input type="checkbox" checked={isChecked} onClick={() => setChecked(prev => !prev)}/>
+      <li key={task.id}>
+         <input type="checkbox" checked={isChecked} onClick={() => handlerCheck()}/>
          <span className={`${styles.title} ${isCheckedClass}`}>
-            {title}
+            {task.title}
          </span>
       </li>
    )

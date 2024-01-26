@@ -1,6 +1,6 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createContext, useEffect, useState } from "react";
-import { getCategories, getTodos } from "../services/api/todos.service";
+import { getCategories, getTodos, toggleCheck } from "../services/api/todos.service";
 import { todoCounter } from "../utils/todoCounter";
 import { getPictures } from "../services/api/pictures.service";
 
@@ -8,7 +8,7 @@ export const TodosContext = createContext({});
 
 export const TodosProvider = ({children}) => {
 
-   // const queryClient = useQueryClient()
+   const queryClient = useQueryClient()
 
    const [data, setData] = useState([])
    const [todoCount, setTodoCount] = useState(0)
@@ -16,6 +16,13 @@ export const TodosProvider = ({children}) => {
    const {data: responce, isLoading, isSuccess} = useQuery({
       queryKey: ['todos'],
       queryFn: () => getTodos()
+   })
+
+   const {mutate: toggleCkeckMutation} = useMutation({
+      mutationFn: (task) => toggleCheck(task),
+      onSuccess: () => {
+         queryClient.invalidateQueries(['todos'])
+      }
    })
 
    useEffect(() => {
@@ -31,7 +38,7 @@ export const TodosProvider = ({children}) => {
       isSuccess,
       isLoading,
       todoCount,
-
+      toggleCkeckMutation
    }
 
    return <TodosContext.Provider value={value}>{children}</TodosContext.Provider>

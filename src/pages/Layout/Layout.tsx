@@ -11,7 +11,6 @@ import { TTodo } from '../../types';
 export const Layout = () => {
 
    const {data} = useContext(TodosContext)
-   console.log(data)
 
    return (
       <main className={styles.wrapper}>

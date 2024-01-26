@@ -7,7 +7,9 @@ import { Task } from "../components/Task/Task";
 
 export const CategoryPage = (categoryObj:TTodo) => {
 
-   const {category, tasks} = categoryObj;
+   const {id: categoryId, category, tasks} = categoryObj;
+
+
 
    return (
       <section>
@@ -18,7 +20,7 @@ export const CategoryPage = (categoryObj:TTodo) => {
          <div>{tasksCounter(tasks)}</div>
          <ul>
             {tasks.map((task:TTask) => {
-               return <Task key={task.id} {...task}/>
+               return <Task key={task.id} categoryId={categoryId} {...task}/>
             })}
          </ul>
 
