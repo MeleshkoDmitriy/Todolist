@@ -3,17 +3,22 @@ import { CategoryPage } from '../CategoryPage';
 import { HomePage } from '../HomePage';
 import styles from './Layout.module.scss';
 import { NotFoundPage } from '../NotFoundPage';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { TodosContext } from '../../context/context';
 import { TTodo } from '../../types';
 
 
 export const Layout = () => {
 
-   const {categories} = useContext(TodosContext)
+   const {categories} = useContext(TodosContext);
+
+   const [isBlur, setBlur] = useState(true);
+
+   const classNameBlur = isBlur  ? `${styles.wrapper} ${styles.blur}` 
+                                 : `${styles.wrapper}`
 
    return (
-      <main className={styles.wrapper}>
+      <main className={classNameBlur}>
          <Routes>
             <Route element={<HomePage />} path='/'/>
             {categories.map((category:TTodo) => {

@@ -4,6 +4,8 @@ import { HiOutlinePlus } from "react-icons/hi2";
 import { TodosContext } from '../../context/context';
 import { Option } from './Option/Option';
 import Select from 'react-select'
+import { ButtonText } from '../shared/ButtonText/ButtonText';
+import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
 
 
 export const Panel = () => {
@@ -14,6 +16,14 @@ export const Panel = () => {
             addTaskMutation} = useContext(TodosContext);
 
    const [title, setTitle] = useState('')
+   const [isPanelOpen, setPanelOpen] = useState(false)
+
+   const onPlusClick = () => {
+      setPanelOpen(prev => !prev)
+   }
+
+
+   const isOpenClassName = isPanelOpen ? `${styles['wrapper_open']}` : '';
 
    const options = [
       {
@@ -60,8 +70,7 @@ export const Panel = () => {
    }
 
 
-   const onAdd = () => {
-
+   const onAddClick = () => {
       if(!title.trim()) {
          return alert('Title is empty!')
       } else {
@@ -75,18 +84,23 @@ export const Panel = () => {
       }
    }
 
+   const onCancelClick = () => {
+      setTitle('')
+   }
+
    return (
-      <div className={styles.wrapper}>
-         <div className={styles.btn_container}>
-            <button className={styles.btn_plus}>
-               <HiOutlinePlus id={styles.icon}/>
-            </button>
-         </div>
+      <div className={`${styles.wrapper} ${isOpenClassName}`}>
+         <ButtonIcon iconColor='plus'
+                     className={styles.btn_plus}
+                     onClick={onPlusClick}>
+            <HiOutlinePlus className={styles.iconPlus}/>
+         </ButtonIcon>
          <form className={styles.form}>
             <div className={styles.task}>
                <label htmlFor=''>Task</label>
                <input   type='text' 
                         placeholder='Write a title'
+                        className={styles.taskInput}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}/>
             </div>
@@ -95,8 +109,16 @@ export const Panel = () => {
                <Select value={getCategory()} onChange={onChangeCategory} options={options}/>
             </div>
             <div className={styles.buttons}>
-                  <button onClick={onAdd} type='button' className={styles.add}>Add</button>
-                  <button type='button' className={styles.cancel}>Cancel</button>
+                  {/* <button onClick={onAdd} type='button' className={styles.add}>Add</button> */}
+                  <ButtonText buttonColor='white'
+                              onClick={onAddClick}>
+                                 Add
+                  </ButtonText>
+                  {/* <button type='button' className={styles.cancel}>Cancel</button> */}
+                  <ButtonText buttonColor='blue'
+                              onClick={onCancelClick}>
+                     Cancel
+                  </ButtonText>
             </div>
          </form>
       </div>

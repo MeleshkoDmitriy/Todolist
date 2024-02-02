@@ -13,6 +13,7 @@ export const TodosProvider = ({children}) => {
 
    const [categories, setCategories] = useState([])
 
+
    const {data: responceCategories, isLoading: isCatLoading, isSuccess: isCatSuccess} = useQuery({
       queryKey: ['categories'],
       queryFn: () => getCategories()
@@ -66,7 +67,7 @@ export const TodosProvider = ({children}) => {
       toggleCkeckMutation,
       addTaskMutation,
       deleteTaskMutation,
-      updateTitleMutation
+      updateTitleMutation,
    }
 
    return <TodosContext.Provider value={value}>{children}</TodosContext.Provider>

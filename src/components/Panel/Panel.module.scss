@@ -1,11 +1,7 @@
 .wrapper {
-   @apply fixed rounded-lg bottom-0 left-0 w-full bg-blue-400;
+   @apply duration-300 translate-y-80 fixed rounded-lg -bottom-0 left-0 h-80 w-full bg-blue-400;
 
-   .btn_container {
-
-      .btn_plus {
-         @apply border-2 border-black rounded-full;
-      }
+   .btn_plus {
    }
 
    .form {
@@ -15,6 +11,10 @@
          @apply flex flex-col w-60 pb-3;
       }
 
+      .taskInput {
+         @apply h-10 rounded ;
+      }
+
       .buttons {
          @apply  w-60 flex justify-between;
          .add,
@@ -22,5 +22,13 @@
             @apply p-3 border-2 border-black;
          }
       }
+   }
+}
+
+.wrapper_open {
+   @apply duration-300 ease-in-out translate-y-0 z-10 backdrop-blur;
+
+   .iconPlus {
+      @apply duration-500 rotate-45;
    }
 }

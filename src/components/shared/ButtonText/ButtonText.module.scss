@@ -1,0 +1,13 @@
+.white {
+   @apply bg-white cursor-pointer rounded border-2 border-blue-500 max-w-20 h-9 size-full flex justify-center items-center;
+}
+.text_white {
+   @apply text-blue-500;
+}
+
+.blue {
+   @apply bg-blue-500 cursor-pointer rounded border-2 border-white max-w-20 h-9 size-full flex justify-center items-center;
+}
+.text_blue {
+   @apply text-white;
+}

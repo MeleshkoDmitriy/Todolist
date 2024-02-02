@@ -2,6 +2,10 @@
    @apply flex justify-between items-center max-w-72 size-full bg-slate-100 rounded mb-5 p-5;
 }
 
+.checkbox {
+   @apply min-w-10 min-h-10 max-w-10 max-h-10 accent-slate-100 outline-none;
+}
+
 .titleText {
    @apply text-lg overflow-hidden;
 }
