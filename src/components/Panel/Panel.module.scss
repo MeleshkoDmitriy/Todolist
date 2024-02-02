@@ -1,3 +1,26 @@
 .wrapper {
-   @apply absolute bottom-0 left-0
+   @apply fixed rounded-lg bottom-0 left-0 w-full bg-blue-400;
+
+   .btn_container {
+
+      .btn_plus {
+         @apply border-2 border-black rounded-full;
+      }
+   }
+
+   .form {
+
+      .task,
+      .category {
+         @apply flex flex-col w-60 pb-3;
+      }
+
+      .buttons {
+         @apply  w-60 flex justify-between;
+         .add,
+         .cancel {
+            @apply p-3 border-2 border-black;
+         }
+      }
+   }
 }

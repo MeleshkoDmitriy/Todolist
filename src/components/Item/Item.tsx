@@ -1,21 +1,20 @@
 import { Link } from 'react-router-dom';
-import { tasksCounter } from '../../utils/tasksCounter';
 import styles from './Item.module.scss';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import defaultImage from '../../assets/images/defaultImage.png'
+import {categoryFilter} from '../../utils/categoryFilter'
+import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
 
-
-export const Item = ({category, link, tasks }) => {
+export const Item = ({category, link, responceTasks }) => {
 
    const imageStyles = {
-      width: '50px',
-      height: '50px',
+      width: '60px',
+      height: '60px',
       backgroundImage: `URL(${link})`,
-      border: '1px solid black',
-      backgroundSize: 'cover'
+      backgroundSize: 'contain'
    }
    
-   // console.log(tasks, category, link, isSuccess)
+   const categoryLength = categoryFilter(responceTasks, category).length;
 
    return (
       <div className={styles.wrapper}>
@@ -24,11 +23,12 @@ export const Item = ({category, link, tasks }) => {
          </div>
          <div className={styles.category_info}>
             <h3>{category}</h3>
-            <span>{tasksCounter(tasks)} Task(s)</span>
+            <span>
+               {categoryLength} Task(s)</span>
          </div>
-         <div className={styles.more}>
+         <ButtonIcon iconColor='blue'>
             <BsThreeDotsVertical />
-         </div>
+         </ButtonIcon>
       </div>
    )
 }

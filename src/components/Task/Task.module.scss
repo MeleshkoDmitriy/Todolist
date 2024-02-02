@@ -1,3 +1,11 @@
-.isCheckedClass {
+.wrapper {
+   @apply flex justify-between items-center max-w-72 size-full bg-slate-100 rounded mb-5 p-5;
+}
+
+.titleText {
+   @apply text-lg overflow-hidden;
+}
+
+.checkedClass {
    @apply line-through opacity-70;
 }

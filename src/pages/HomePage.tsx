@@ -9,17 +9,17 @@ import { Link } from "react-router-dom"
 export const HomePage = () => {
 
    const {
-      data, 
-      isSuccess, 
-      todoCount
+      categories,
+      isCatSuccess,
+      responceTasks
    } = useContext(TodosContext)
 
    return (
       <section>
-         <Header todoCount={todoCount}/>
+         <Header />
          <div>Home page text</div>
-         {isSuccess && data?.map((obj) => {
-            return <Link key={obj.id} to={obj.category}><Item  {...obj}/></Link>
+         {isCatSuccess && categories?.map((obj) => {
+            return <Link key={obj.id} to={obj.category}><Item responceTasks={responceTasks} {...obj}/></Link>
          })}
       </section>
    )

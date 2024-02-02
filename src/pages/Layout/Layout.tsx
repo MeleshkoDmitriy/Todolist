@@ -10,14 +10,14 @@ import { TTodo } from '../../types';
 
 export const Layout = () => {
 
-   const {data} = useContext(TodosContext)
+   const {categories} = useContext(TodosContext)
 
    return (
       <main className={styles.wrapper}>
          <Routes>
             <Route element={<HomePage />} path='/'/>
-            {data.map((categoryObj:TTodo) => {
-               return <Route  key={categoryObj.id} element={<CategoryPage {...categoryObj}/>} path={categoryObj.category}/>
+            {categories.map((category:TTodo) => {
+               return <Route  key={category.id} element={<CategoryPage {...category}/>} path={category.category}/>
             })}
 
             <Route element={<NotFoundPage />} path='*' />
