@@ -14,11 +14,11 @@ export const Layout = ({isPanelOpen, setPanelOpen}) => {
 
    const [isBlur, setBlur] = useState(true);
 
-   const classNameBlur = isPanelOpen  ? `${styles.wrapper} ${styles.panelOpen}` 
+   const className = isPanelOpen  ? `${styles.wrapper} ${styles.panelOpen}` 
                                  : `${styles.wrapper}`
 
    return (
-      <main className={classNameBlur}>
+      <main className={className}>
          <Routes>
             <Route element={<HomePage />} path='/'/>
 

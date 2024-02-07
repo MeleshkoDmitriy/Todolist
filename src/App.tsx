@@ -4,6 +4,7 @@ import { Panel } from './components/Panel/Panel'
 import { Layout } from './pages/Layout/Layout'
 
 
+
 function App() {
 
   const [isPanelOpen, setPanelOpen] = useState(false)

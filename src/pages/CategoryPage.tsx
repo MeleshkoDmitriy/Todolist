@@ -14,18 +14,31 @@ export const CategoryPage = ({ category }) => {
 
    const tasks = categoryFilter(responceTasks, category)
 
+   const counter = tasks.length;
+
    return (
       <section className={styles.wrapper}>
-         <Link to='/'>
-            <ButtonIcon iconColor="blue">
-               <IoIosArrowBack />
-            </ButtonIcon>
-         </Link>
-         <div>CATEGORY {category}</div>
-         <div>
-            {tasks.length}
+         <div className={styles.header}>
+            <div className={styles.backBtn}>
+               <Link to='/'>
+                  <ButtonIcon iconColor="white">
+                     <IoIosArrowBack />
+                  </ButtonIcon>
+               </Link>
             </div>
-         <ul>
+
+            <div className={styles.headerTitles}>
+               <div className={styles.title}>
+                  {category}
+               </div>
+               <div className={styles.subTitle}>
+                  {tasks.length  ? `There Are ${counter} Tasks`
+                                 : `There Are No Tasks Here Yet`}
+               </div>
+            </div>
+
+         </div>
+         <ul className={styles.listContainer}>
             {tasks?.map((task:TTask) => {
                return <Task key={task.id} {...task}/>
             })}

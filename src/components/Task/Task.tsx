@@ -67,7 +67,7 @@ export const Task = (task) => {
             <div className={styles.categoryIcon}>
                <img src={imageLink ? imageLink.link : defaultImage} alt="category" title={category}/>
             </div>
-            <input className={styles.checkbox} type="checkbox" checked={isChecked} onClick={handlerCheck}/>
+            <input className={styles.checkbox} type="checkbox" checked={isChecked} onChange={handlerCheck}/>
             {isUpdating ?  <input type='text' className={styles.titleText} value={titleText} onChange={(e) => setTitleText(e.target.value)}/>
                         :  <span className={`${isCheckedClass}`}>
                               {titleText}

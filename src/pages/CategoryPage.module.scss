@@ -1,3 +1,32 @@
 .wrapper {
-   @apply h-[100vh] ;
+   @apply h-[100vh] w-full;
+}
+
+// .header {
+//    @apply w-full h-24 flex justify-center items-center mb-5 px-5;
+// }
+
+.header {
+   @apply p-5 h-[100px] flex mb-5;
+}
+
+// .backBtn {
+//    @apply self-start mt-5 ml-5 absolute top-0 left-0;
+// }
+
+.headerTitles {
+   @apply grow flex flex-col justify-center items-center -translate-x-3;
+
+   .title {
+      text-shadow:   2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+                     1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+      @apply text-5xl font-bold text-blue-500 mb-2 pt-5;
+   }
+   .subTitle {
+      @apply text-xl text-white;
+   }
+}
+
+.listContainer {
+   @apply flex flex-col justify-center items-center w-full;
 }

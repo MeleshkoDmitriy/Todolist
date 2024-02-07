@@ -9,6 +9,15 @@
    @apply transition-all duration-200 text-blue-500 hover:text-blue-600 text-2xl;
 }
 
+.white {
+   @apply transition-all duration-200 bg-white  hover:scale-125;
+}
+.text_white {
+   @apply transition-all duration-200 text-blue-500 text-2xl -translate-x-[1px];
+}
+
+
+
 
 .red {
    @apply transition-all duration-200 bg-slate-200 hover:bg-slate-300 hover:scale-125;

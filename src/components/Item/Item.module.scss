@@ -6,6 +6,13 @@
          hover:shadow-lg;
 }
 
+.img_container {
+   @apply w-[60px] h-[60-px];
+   & img {
+      filter: drop-shadow(2px 2px 2px rgb(59 130 246))
+   }
+}
+
 .category_info {
    @apply shrink-0 grow ml-5;
    .category {

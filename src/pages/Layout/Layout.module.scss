@@ -4,5 +4,7 @@
 }
 
 .panelOpen {
+   filter: blur(5px);
    @apply max-h-[50vh] duration-300;
 }
+

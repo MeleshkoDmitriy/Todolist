@@ -53,22 +53,6 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
       setCurrentLabel(newCategory.label);
    }
 
-
-   // function additingFn () {
-   //    if (title.trim() == true) {
-   //       const newTask = {
-   //          title: title,
-   //          category: currentLabel,
-   //          completed: false
-   //       }
-   //       addTaskMutation(newTask);
-   //       setTitle('');
-   //       setPanelOpen(false)
-   //    } else {
-   //       return alert('Title is empty!')
-   //    }
-   // }
-
    const onAddClick = () => {
       if(title.trim()) {
          console.log(title)
@@ -85,24 +69,9 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
       }
    }
 
-   // useEffect(() => {
-   //       if (isPanelOpen == false) {
-   //          window.removeEventListener('keydown', handleKeyDown); 
-   //       } else {
-   //          window.addEventListener('keydown', handleKeyDown);
-   //       }
-   //    },[isPanelOpen]);
-
-   // function handleKeyDown(event) {
-   //    switch (event.key) {
-   //       case 'Enter':
-   //          onAddClick();
-   //          break;
-   //    }
-   // }
-
    const onCancelClick = () => {
-      setTitle('')
+      setTitle('');
+      setPanelOpen(false)
    }
 
    return (

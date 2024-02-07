@@ -6,6 +6,8 @@ import { Link } from "react-router-dom"
 import styles from './HomePage.module.scss'
 import { Task } from "../components/Task/Task"
 import { tasksFilter } from "../utils/utils"
+import { ButtonIcon } from "../components/shared/ButtonIcon/ButtonIcon"
+import { IoIosArrowBack } from "react-icons/io";
 
 
 
@@ -28,24 +30,28 @@ export const HomePage = () => {
       <div>
          <Header />
          <section className={styles.listsContainer}>
-            <div className={styles.activeList}>
+            <div className={styles.activeList} id="active">
                <h2 className={styles.titles}>{activeTasks.length ? `Active Tasks` : `There Are No Active Tasks Yet`}</h2>
-               {isTasksSuccess && activeTasks?.map(active => <Task key={active.title} {...active}/>)}
+               <ul>{isTasksSuccess && activeTasks?.map(active => <Task key={active.title} {...active}/>)}</ul>
             </div>
-{/* {activeTasks.length === 0 && <h3 className={styles.emptyTasks}>There Are No Active Tasks Yet</h3>} */}
-            <div className={styles.categoryList}>
+            <div className={styles.categoryList} id="categories">
                <h2 className={styles.titles}>Categories</h2>
                {isCatSuccess && categories?.map((obj) => {
                   return <Link key={obj.id} to={obj.category}><Item responceTasks={responceTasks} {...obj}/></Link>
                })}
             </div>
-            <div className={styles.completedList}>
+            <div className={styles.completedList} id="completed">
                <h2 className={styles.titles}>{completedTasks.length ? `Completed Tasks` : `There Are No Completed Tasks Yet`}</h2>
-               {isTasksSuccess && completedTasks?.map(completed => <Task key={completed.title} {...completed}/>)}
+               <ul>{isTasksSuccess && completedTasks?.map(completed => <Task key={completed.title} {...completed}/>)}</ul>
             </div>
          </section>
-
-
+         <div style={{position: 'fixed', bottom:'14px', left:'50px'}} className={styles.toTop}>
+            <ButtonIcon iconColor='blue' className={styles.arrow}>
+               <a href="#top">
+                  <IoIosArrowBack className={styles.icon} style={{transform: 'rotate(90deg)'}}/>
+               </a>
+            </ButtonIcon>
+         </div>
 
       </div>
    )

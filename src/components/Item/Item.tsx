@@ -7,19 +7,19 @@ import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
 
 export const Item = ({category, link, responceTasks }) => {
 
-   const imageStyles = {
-      width: '60px',
-      height: '60px',
-      backgroundImage: `URL(${link})`,
-      backgroundSize: 'contain'
-   }
+   // const imageStyles = {
+   //    width: '60px',
+   //    height: '60px',
+   //    backgroundImage: `URL(${link})`,
+   //    backgroundSize: 'contain'
+   // }
    
    const categoryLength = categoryFilter(responceTasks, category).length;
 
    return (
       <div className={styles.wrapper}>
-         <div className={styles.img_container} style={imageStyles}>
-
+         <div className={styles.img_container}>
+            <img src={link} alt="category" title={category}/>
          </div>
          <div className={styles.category_info}>
             <h3 className={styles.category}>{category}</h3>
