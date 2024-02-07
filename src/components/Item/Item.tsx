@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './Item.module.scss';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import defaultImage from '../../assets/images/defaultImage.png'
-import {categoryFilter} from '../../utils/categoryFilter'
+import {categoryFilter} from '../../utils/utils'
 import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
 
 export const Item = ({category, link, responceTasks }) => {

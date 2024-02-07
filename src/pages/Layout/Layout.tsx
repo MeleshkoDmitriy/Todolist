@@ -8,19 +8,20 @@ import { TodosContext } from '../../context/context';
 import { TTodo } from '../../types';
 
 
-export const Layout = () => {
+export const Layout = ({isPanelOpen, setPanelOpen}) => {
 
    const {categories} = useContext(TodosContext);
 
    const [isBlur, setBlur] = useState(true);
 
-   const classNameBlur = isBlur  ? `${styles.wrapper} ${styles.blur}` 
+   const classNameBlur = isPanelOpen  ? `${styles.wrapper} ${styles.panelOpen}` 
                                  : `${styles.wrapper}`
 
    return (
       <main className={classNameBlur}>
          <Routes>
             <Route element={<HomePage />} path='/'/>
+
             {categories.map((category:TTodo) => {
                return <Route  key={category.id} element={<CategoryPage {...category}/>} path={category.category}/>
             })}

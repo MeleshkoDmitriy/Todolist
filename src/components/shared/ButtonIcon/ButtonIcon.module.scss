@@ -32,3 +32,12 @@
 .text_plus {
    @apply transition-all duration-200 text-3xl text-white ;
 }
+
+
+.smallplus {
+   @apply transition-all duration-200 bg-white relative bottom-7 left-14 hover:scale-110;
+   
+   }
+.text_smallplus {
+   @apply transition-all duration-200 text-green-500 text-3xl;
+}

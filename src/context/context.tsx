@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createContext, useEffect, useState } from "react";
 import { addTask, getCategories, getTasks, toggleCheck, deleteTask, updateTitle } from "../services/api/todos.service";
-import { todoCounter } from "../utils/categoryFilter";
+import { todoCounter } from "../utils/utils";
 import { getPictures } from "../services/api/pictures.service";
 import { allTasksCounter } from "../utils/allTasksCounter";
 

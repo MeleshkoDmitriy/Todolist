@@ -1,13 +1,12 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { TTask, TTodo } from "../types";
-import { tasksCounter } from "../utils/tasksCounter";
 import { Task } from "../components/Task/Task";
 import { useContext } from "react";
 import { TodosContext } from "../context/context";
-import { categoryFilter } from "../utils/categoryFilter";
+import { categoryFilter } from "../utils/utils";
 import { ButtonIcon } from "../components/shared/ButtonIcon/ButtonIcon";
-
+import styles from './CategoryPage.module.scss'
 
 export const CategoryPage = ({ category }) => {
 
@@ -16,7 +15,7 @@ export const CategoryPage = ({ category }) => {
    const tasks = categoryFilter(responceTasks, category)
 
    return (
-      <section>
+      <section className={styles.wrapper}>
          <Link to='/'>
             <ButtonIcon iconColor="blue">
                <IoIosArrowBack />

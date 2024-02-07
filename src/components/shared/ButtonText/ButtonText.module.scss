@@ -1,12 +1,16 @@
+.wrapper {
+   @apply duration-75;
+}
+
 .white {
-   @apply bg-white cursor-pointer rounded border-2 border-blue-500 max-w-20 h-9 size-full flex justify-center items-center;
+   @apply bg-white shadow-lg shadow-blue-500 cursor-pointer rounded border-2 border-blue-500 max-w-20 h-9 size-full flex justify-center items-center hover:shadow-blue-600 active:translate-y-1;
 }
 .text_white {
    @apply text-blue-500;
 }
 
 .blue {
-   @apply bg-blue-500 cursor-pointer rounded border-2 border-white max-w-20 h-9 size-full flex justify-center items-center;
+   @apply bg-blue-500 shadow-lg shadow-blue-500 cursor-pointer rounded border-2 border-white max-w-20 h-9 size-full flex justify-center items-center hover:shadow-blue-600 active:translate-y-1;
 }
 .text_blue {
    @apply text-white;

@@ -2,21 +2,20 @@ import { useContext, useState } from 'react';
 import styles from './Panel.module.scss';
 import { HiOutlinePlus } from "react-icons/hi2";
 import { TodosContext } from '../../context/context';
-import { Option } from './Option/Option';
 import Select from 'react-select'
 import { ButtonText } from '../shared/ButtonText/ButtonText';
 import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
 
 
-export const Panel = () => {
+export const Panel = ({isPanelOpen, setPanelOpen}) => {
 
    const {  categories, 
             isCatLoading, 
             isCatSuccess, 
-            addTaskMutation} = useContext(TodosContext);
+            addTaskMutation
+            } = useContext(TodosContext);
 
    const [title, setTitle] = useState('')
-   const [isPanelOpen, setPanelOpen] = useState(false)
 
    const onPlusClick = () => {
       setPanelOpen(prev => !prev)
@@ -25,39 +24,54 @@ export const Panel = () => {
 
    const isOpenClassName = isPanelOpen ? `${styles['wrapper_open']}` : '';
 
-   const options = [
+   // const options = [
+   //    {
+   //       value: 'personal',
+   //       label: 'Personal'
+   //    },
+   //    {
+   //       value: 'work',
+   //       label: 'Work'
+   //    },
+   //    {
+   //       value: 'study',
+   //       label: 'Study'
+   //    },
+   //    {
+   //       value: 'sport',
+   //       label: 'Sport'
+   //    },
+   //    {
+   //       value: 'health',
+   //       label: 'Health'
+   //    },
+   //    {
+   //       value: 'finance',
+   //       label: 'Finance'
+   //    },
+   //    {
+   //       value: 'shopping',
+   //       label: 'Shopping'
+   //    }
+   // ]
+
+   const defaultOptions = [
       {
          value: 'personal',
          label: 'Personal'
-      },
-      {
-         value: 'work',
-         label: 'Work'
-      },
-      {
-         value: 'study',
-         label: 'Study'
-      },
-      {
-         value: 'sport',
-         label: 'Sport'
-      },
-      {
-         value: 'health',
-         label: 'Health'
-      },
-      {
-         value: 'finance',
-         label: 'Finance'
-      },
-      {
-         value: 'shopping',
-         label: 'Shopping'
       }
    ]
 
-   const [currentCategory, setCurrentCategory] = useState(options[0].value);
-   const [currentLabel, setCurrentLabel] = useState(options[0].label);
+   const options = isCatSuccess ? categories.map(c => {
+      return {
+         value: c.category.toLowerCase(), 
+         label: c.category
+      }
+   })
+                              : []
+
+   const [currentCategory, setCurrentCategory] = useState(defaultOptions[0].value);
+   const [currentLabel, setCurrentLabel] = useState(defaultOptions[0].label);
 
 
    const getCategory = () => {
@@ -81,6 +95,7 @@ export const Panel = () => {
          }
          addTaskMutation(newTask);
          setTitle('');
+         setPanelOpen(false)
       }
    }
 
@@ -89,38 +104,43 @@ export const Panel = () => {
    }
 
    return (
-      <div className={`${styles.wrapper} ${isOpenClassName}`}>
-         <ButtonIcon iconColor='plus'
-                     className={styles.btn_plus}
-                     onClick={onPlusClick}>
-            <HiOutlinePlus className={styles.iconPlus}/>
-         </ButtonIcon>
-         <form className={styles.form}>
-            <div className={styles.task}>
-               <label htmlFor=''>Task</label>
-               <input   type='text' 
-                        placeholder='Write a title'
-                        className={styles.taskInput}
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}/>
+         <section className={`${styles.wrapper} ${isOpenClassName}`}>
+            <div className={styles.container}>
+               <ButtonIcon iconColor='plus'
+                           className={styles.btn_plus}
+                           onClick={onPlusClick}>
+                  <HiOutlinePlus className={styles.iconPlus}/>
+               </ButtonIcon>
+               <form className={styles.form}>
+                  <div className={styles.task}>
+                     <label htmlFor=''>Task</label>
+                     <input   type='text' 
+                              placeholder='Write a title'
+                              className={styles.taskInput}
+                              value={title}
+                              onChange={(e) => setTitle(e.target.value)}/>
+                  </div>
+                  <div className={styles.category}>
+                     <label htmlFor=''>Category</label>
+                     <Select  className={styles.select} 
+                              value={getCategory()} 
+                              onChange={onChangeCategory} 
+                              options={isCatSuccess ? options : defaultOptions}
+                              isLoading={isCatLoading}
+                              menuPlacement='top'/>
+                  </div>
+                  <div className={styles.buttons}>
+                        <ButtonText buttonColor='white'
+                                    onClick={onAddClick}>
+                                       Add
+                        </ButtonText>
+                        <ButtonText buttonColor='blue'
+                                    onClick={onCancelClick}>
+                           Cancel
+                        </ButtonText>
+                  </div>
+               </form>
             </div>
-            <div className={styles.category}>
-               <label htmlFor=''>Category</label>
-               <Select value={getCategory()} onChange={onChangeCategory} options={options}/>
-            </div>
-            <div className={styles.buttons}>
-                  {/* <button onClick={onAdd} type='button' className={styles.add}>Add</button> */}
-                  <ButtonText buttonColor='white'
-                              onClick={onAddClick}>
-                                 Add
-                  </ButtonText>
-                  {/* <button type='button' className={styles.cancel}>Cancel</button> */}
-                  <ButtonText buttonColor='blue'
-                              onClick={onCancelClick}>
-                     Cancel
-                  </ButtonText>
-            </div>
-         </form>
-      </div>
+         </section>
    )
 }

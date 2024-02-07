@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, FC } from 'react'
 import styles from './ButtonIcon.module.scss'
 
 interface ButtonIconProps extends ComponentPropsWithoutRef<'button'> {
-   iconColor: 'blue' | 'red' | 'green' | 'plus'
+   iconColor: 'blue' | 'red' | 'green' | 'plus' | 'smallplus'
 }
 
 export const ButtonIcon:FC<ButtonIconProps> = ({children, iconColor, onClick, ...props}) => {

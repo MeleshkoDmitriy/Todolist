@@ -1,8 +1,8 @@
 
 .wrapper {
-   @apply h-lvh;
+   @apply max-h-[100vh] rounded-b-full bg-blue-400 duration-300;
 }
 
-.blur {
-   backdrop-filter: blur(64px);
+.panelOpen {
+   @apply max-h-[45vh] duration-300;
 }

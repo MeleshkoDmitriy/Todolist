@@ -1,3 +1,23 @@
 .wrapper {
-   @apply size-full h-10 bg-blue-400;
+   @apply h-32 w-full ;
+
+   .body {
+      @apply h-full max-w-96 mx-auto  flex justify-evenly items-center text-white;
+
+      .title {
+         @apply text-3xl font-bold;
+      }
+      .subTitle {
+         @apply text-xl;
+
+         .counter {
+            @apply font-bold;
+         }
+      }
+   }
+
+}
+
+.bodyImage {
+   @apply w-24 h-24;
 }
