@@ -54,6 +54,22 @@
    transition: 0.3s;
 }
 
+.iconPlus {
+   animation: plusAnimation 1.5s ease-in-out infinite;
+}
+
+@keyframes plusAnimation {
+   0% {
+      transform: rotate(0deg);
+   }
+   50% {
+      transform: rotate(450deg);
+   }
+   100%{
+      transform: rotate(450deg);
+   }
+}
+
 .wrapper_open {
    transform: translate(-50%, 0);
       .iconPlus { 
@@ -61,6 +77,8 @@
       transition: 0.3s;
    }
 }
+
+
 
 .container{
    height: 100%;

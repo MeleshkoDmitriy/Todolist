@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Panel.module.scss';
 import { HiOutlinePlus } from "react-icons/hi2";
 import { TodosContext } from '../../context/context';
@@ -24,36 +24,6 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
 
    const isOpenClassName = isPanelOpen ? `${styles['wrapper_open']}` : '';
 
-   // const options = [
-   //    {
-   //       value: 'personal',
-   //       label: 'Personal'
-   //    },
-   //    {
-   //       value: 'work',
-   //       label: 'Work'
-   //    },
-   //    {
-   //       value: 'study',
-   //       label: 'Study'
-   //    },
-   //    {
-   //       value: 'sport',
-   //       label: 'Sport'
-   //    },
-   //    {
-   //       value: 'health',
-   //       label: 'Health'
-   //    },
-   //    {
-   //       value: 'finance',
-   //       label: 'Finance'
-   //    },
-   //    {
-   //       value: 'shopping',
-   //       label: 'Shopping'
-   //    }
-   // ]
 
    const defaultOptions = [
       {
@@ -84,10 +54,24 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
    }
 
 
+   // function additingFn () {
+   //    if (title.trim() == true) {
+   //       const newTask = {
+   //          title: title,
+   //          category: currentLabel,
+   //          completed: false
+   //       }
+   //       addTaskMutation(newTask);
+   //       setTitle('');
+   //       setPanelOpen(false)
+   //    } else {
+   //       return alert('Title is empty!')
+   //    }
+   // }
+
    const onAddClick = () => {
-      if(!title.trim()) {
-         return alert('Title is empty!')
-      } else {
+      if(title.trim()) {
+         console.log(title)
          const newTask = {
             title: title,
             category: currentLabel,
@@ -96,8 +80,26 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
          addTaskMutation(newTask);
          setTitle('');
          setPanelOpen(false)
+      } else {
+         return alert('Title is empty!')
       }
    }
+
+   // useEffect(() => {
+   //       if (isPanelOpen == false) {
+   //          window.removeEventListener('keydown', handleKeyDown); 
+   //       } else {
+   //          window.addEventListener('keydown', handleKeyDown);
+   //       }
+   //    },[isPanelOpen]);
+
+   // function handleKeyDown(event) {
+   //    switch (event.key) {
+   //       case 'Enter':
+   //          onAddClick();
+   //          break;
+   //    }
+   // }
 
    const onCancelClick = () => {
       setTitle('')

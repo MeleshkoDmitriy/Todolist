@@ -21,8 +21,8 @@ export const Header:FC = () => {
       <header className={styles.wrapper}>
          <div className={styles.body}>
             <div className={styles.bodyText}>
-               <h1 className={styles.title}>Hello, User</h1>
-               <p className={styles.subTitle}>Tasks for today:  
+               <h1 className={styles.title}>Hello User</h1>
+               <p className={styles.subTitle}>Tasks For Today:  
                <span className={styles.counter}> {isTasksSuccess ? tasksForToday : '0'}</span>
                </p>
             </div>

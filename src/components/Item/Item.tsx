@@ -22,7 +22,7 @@ export const Item = ({category, link, responceTasks }) => {
 
          </div>
          <div className={styles.category_info}>
-            <h3>{category}</h3>
+            <h3 className={styles.category}>{category}</h3>
             <span>
                {categoryLength} Task(s)</span>
          </div>
