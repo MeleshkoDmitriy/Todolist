@@ -7,9 +7,16 @@
 }
 
 .img_container {
-   @apply w-[60px] h-[60-px];
+   @apply w-[60px] h-[60-px] duration-200;
    & img {
       filter: drop-shadow(2px 2px 2px rgb(59 130 246))
+   }
+}
+
+.wrapper {
+   & :hover > img {
+      filter: drop-shadow(5px 5px 5px rgb(59 130 246));
+      transition-duration: 0.2s;
    }
 }
 
