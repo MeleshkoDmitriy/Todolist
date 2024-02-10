@@ -5,6 +5,10 @@ import { TodosContext } from '../../context/context';
 import Select from 'react-select'
 import { ButtonText } from '../shared/ButtonText/ButtonText';
 import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
+import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+import { TiThLargeOutline } from 'react-icons/ti';
+
 
 
 export const Panel = ({isPanelOpen, setPanelOpen}) => {
@@ -55,7 +59,6 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
 
    const onAddClick = () => {
       if(title.trim()) {
-         console.log(title)
          const newTask = {
             title: title,
             category: currentLabel,
@@ -64,14 +67,43 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
          addTaskMutation(newTask);
          setTitle('');
          setPanelOpen(false)
+         newTaskToast(title, currentLabel)
       } else {
-         return alert('Title is empty!')
+         return emptyTitleToast();
       }
    }
 
    const onCancelClick = () => {
       setTitle('');
       setPanelOpen(false)
+   }
+
+   const newTaskToast = (newTask, categoryName) => {
+      toast.success(`You added a new task: "${newTask}" to the ${categoryName} Category`, {
+         position: "top-left",
+         autoClose: 1500,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "colored",
+         transition: Bounce,
+         });
+   }
+
+   const emptyTitleToast = () => {
+      toast.error('Title is empty!', {
+         position: "top-left",
+         autoClose: 1500,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "colored",
+         transition: Bounce,
+         });
    }
 
    return (
@@ -102,7 +134,9 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
                   </div>
                   <div className={styles.buttons}>
                         <ButtonText buttonColor='white'
-                                    onClick={onAddClick}>
+                                    onClick={() => {
+                                    onAddClick()
+                                    }}>
                                        Add
                         </ButtonText>
                         <ButtonText buttonColor='blue'

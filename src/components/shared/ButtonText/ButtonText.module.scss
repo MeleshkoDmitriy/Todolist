@@ -10,7 +10,7 @@
 }
 
 .blue {
-   @apply bg-blue-500 shadow-lg shadow-blue-500 cursor-pointer rounded border-2 border-white max-w-20 h-9 size-full flex justify-center items-center hover:shadow-blue-600 active:translate-y-1;
+   @apply bg-blue-500 shadow-lg shadow-blue-500 cursor-pointer rounded border-2 border-white min-w-20 max-w-32 h-9 flex justify-center items-center hover:shadow-blue-600 active:translate-y-1;
 }
 .text_blue {
    @apply text-white;

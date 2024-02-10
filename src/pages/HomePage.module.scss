@@ -3,7 +3,7 @@
 // }
 
 .listsContainer {
-   @apply flex justify-evenly items-start w-full container mx-auto gap-3 cols:flex-col cols:items-center cols:gap-0;
+   @apply flex justify-evenly items-start cols:flex-col cols:items-center cols:gap-0;
 }
 
 .titles {

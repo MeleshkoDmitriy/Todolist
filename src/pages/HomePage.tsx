@@ -23,9 +23,6 @@ export const HomePage = () => {
    const activeTasks = tasksFilter(responceTasks, false);
    const completedTasks = tasksFilter(responceTasks, true);
 
-   console.log('active', activeTasks,'completed', completedTasks)
-
-
    return (
       <div>
          <Header />

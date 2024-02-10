@@ -6,7 +6,10 @@ import { BsTrash } from "react-icons/bs";
 import { LuPenLine } from "react-icons/lu";
 import { MdDone } from "react-icons/md";
 import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
-import defaultImage from '../../assets/images/defaultImage.png'
+import defaultImage from '../../assets/images/defaultImage.png';
+import { toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+
 
 export const Task = (task) => {
 
@@ -28,6 +31,34 @@ export const Task = (task) => {
       categories,
    } = useContext(TodosContext)
 
+   const updateToast = () => {
+      toast.info('Task was updated!', {
+         position: "top-left",
+         autoClose: 1500,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "colored",
+         transition: Bounce,
+         });
+   }
+
+   const deleteToast = (text) => {
+      toast.warning(`"${text}" was deleted`, {
+         position: "top-left",
+         autoClose: 1500,
+         hideProgressBar: false,
+         closeOnClick: true,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "colored",
+         transition: Bounce,
+         });
+   }
+
    const isCheckedClass = isChecked ? `${styles.checkedClass} ${styles.titleText}` : `${styles.titleText}` ;
 
    const handlerCheck = () => {
@@ -39,7 +70,6 @@ export const Task = (task) => {
       if(!task.id) {
          return alert('Error while deleting task')
       } else {
-         console.log(task.id)
          deleteTaskMutation(task.id)
       }
    }
@@ -60,6 +90,8 @@ export const Task = (task) => {
       }
    })
 
+   
+
 
    return (
       <li className={styles.outer}>
@@ -75,18 +107,25 @@ export const Task = (task) => {
 
             <div className={styles.buttons}>
                {isUpdating    ? <ButtonIcon  iconColor='green'
-                                             onClick={handlerUpdate}>
+                                             onClick={() => {handlerUpdate() 
+                                                             updateToast()}}>
                                     <MdDone />
                                  </ButtonIcon>
-                              :  <ButtonIcon onClick={() => setUpdating(prev => !prev)} iconColor='blue'>
+                              :  <ButtonIcon onClick={() => {
+                                 setUpdating(prev => !prev)
+                              }} iconColor='blue'>
                                     <LuPenLine />
                                  </ButtonIcon>}
 
-               <ButtonIcon className={styles.trashBtn} onClick={handlerDelete} iconColor='red'>
+               <ButtonIcon className={styles.trashBtn} onClick={() => {
+                  handlerDelete(),
+                  deleteToast(titleText)
+                  }} iconColor='red'>
                   <BsTrash />
                </ButtonIcon>
             </div>
          </div>
+
       </li>
 
    )
