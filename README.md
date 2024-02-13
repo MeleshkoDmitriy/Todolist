@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+<h1>Todolist App</h1>
+<h2><a href='#'>Click to see Demo</a></h2>
+<h2>React, Typescript, Tailwind, SCSS Modules, React-Query (TanStack Query), Vite<h2>
+<h3>react-icons, react-select, react-toastify, react-router-dom</h2>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p>This is a TodoList application built with React and TypeScript. The app allows users to create, update, and delete tasks in various categories. It also provides features like marking tasks as completed and filtering tasks based on category.</p>
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<h3>Features</h3>
+<ul>
+  <li>Create new tasks with specified category and title.</li>
+  <li>Update the completion status of tasks.</li>
+  <li>Delete tasks from the list.</li>
+  <li>Filter tasks based on their category.</li>
+  <li>Responsive design for mobile and desktop devices.</li>
+</ul>
