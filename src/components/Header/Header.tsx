@@ -1,21 +1,17 @@
-import { FC, useContext } from 'react'
+import { useContext } from 'react'
 import styles from './Header.module.scss'
-import { TodosContext } from '../../context/context'
+import { TodosContext, TodosContextValue } from '../../context/context'
 import defaultUser from '../../assets/images/defaultUser.png'
 import { tasksFilter } from '../../utils/utils'
 import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon'
 import { HiOutlinePlus } from "react-icons/hi2";
 
 
+export const Header:React.FC = () => {
 
-// interface HeaderProps {
-// }
+   const {responceTasks, isTasksSuccess} = useContext<TodosContextValue>(TodosContext)
 
-export const Header:FC = () => {
-
-   const {responceTasks, isTasksSuccess} = useContext(TodosContext)
-
-   let tasksForToday = tasksFilter(responceTasks, false).length
+   const tasksForToday:number = tasksFilter(responceTasks, false).length
 
    return (
       <header className={styles.wrapper} id='top'>

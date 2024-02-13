@@ -2,14 +2,13 @@
    @apply h-[100vh] w-full;
 }
 
-
 .header {
    @apply p-5 h-[100px] flex mb-5;
 }
 
 
-.headerTitles {
-   @apply grow flex flex-col justify-center items-center -translate-x-3;
+.headerBody {
+   @apply grow flex justify-center items-center mt-5;
 
    .title {
       text-shadow:   2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
@@ -19,8 +18,14 @@
    .subTitle {
       @apply text-xl text-white;
    }
+
+   .headerImage img {
+      @apply w-[100px] ml-3;
+      filter: drop-shadow(2px 2px 2px #fff);
+   }
 }
 
+
 .listContainer {
-   @apply flex flex-col justify-center items-center w-full;
+   @apply flex flex-col justify-center items-center w-full pt-5;
 }

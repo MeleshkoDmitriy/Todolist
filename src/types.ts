@@ -1,11 +1,11 @@
 export type TTask = {
-   id: number,
+   id?: number,
    category: string,
    title: string,
    completed: boolean
 }
 
-export type TTodo = {
+export type TCategory = {
    id: number,
    category: string,
    link: string,

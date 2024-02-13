@@ -1,6 +1,4 @@
-// .wrapper {
-//    @apply flex justify-between items-center max-w-72 size-full bg-slate-100 rounded mb-5 p-5;
-// }
+
 .outer {
    @apply relative list-none;
 }
@@ -33,5 +31,3 @@
 .buttons {
    @apply shrink-0 w-[90px] flex justify-between ;
 }
-
-//border-black border-2

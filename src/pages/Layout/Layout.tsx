@@ -3,16 +3,17 @@ import { CategoryPage } from '../CategoryPage';
 import { HomePage } from '../HomePage';
 import styles from './Layout.module.scss';
 import { NotFoundPage } from '../NotFoundPage';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { TodosContext } from '../../context/context';
-import { TTodo } from '../../types';
+import { TCategory } from '../../types';
 
+interface LayoutProps {
+   isPanelOpen: boolean;
+}
 
-export const Layout = ({isPanelOpen, setPanelOpen}) => {
+export const Layout:React.FC<LayoutProps> = ({isPanelOpen}) => {
 
    const {categories} = useContext(TodosContext);
-
-   const [isBlur, setBlur] = useState(true);
 
    const className = isPanelOpen  ? `${styles.wrapper} ${styles.panelOpen}` 
                                  : `${styles.wrapper}`
@@ -22,7 +23,7 @@ export const Layout = ({isPanelOpen, setPanelOpen}) => {
          <Routes>
             <Route element={<HomePage />} path='/'/>
 
-            {categories.map((category:TTodo) => {
+            {categories.map((category:TCategory) => {
                return <Route  key={category.id} element={<CategoryPage {...category}/>} path={category.category}/>
             })}
 

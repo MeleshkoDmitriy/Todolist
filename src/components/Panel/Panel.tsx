@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Panel.module.scss';
 import { HiOutlinePlus } from "react-icons/hi2";
 import { TodosContext } from '../../context/context';
@@ -7,11 +7,14 @@ import { ButtonText } from '../shared/ButtonText/ButtonText';
 import { ButtonIcon } from '../shared/ButtonIcon/ButtonIcon';
 import { toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
-import { TiThLargeOutline } from 'react-icons/ti';
+import { TTask } from '../../types';
 
+interface PanelProps {
+   isPanelOpen: boolean;
+   setPanelOpen: () => void
+}
 
-
-export const Panel = ({isPanelOpen, setPanelOpen}) => {
+export const Panel:React.FC<PanelProps> = ({isPanelOpen, setPanelOpen}) => {
 
    const {  categories, 
             isCatLoading, 
@@ -22,7 +25,7 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
    const [title, setTitle] = useState('')
 
    const onPlusClick = () => {
-      setPanelOpen(prev => !prev)
+      setPanelOpen((prev: boolean) => !prev)
    }
 
 
@@ -52,14 +55,19 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
       return currentCategory ? options.find(category => category.value === currentCategory) : ''
    }
 
-   const onChangeCategory = (newCategory) => {
+   interface ISelectCategory {
+      value: string;
+      label: string;
+   }
+
+   const onChangeCategory = (newCategory: ISelectCategory) => {
       setCurrentCategory(newCategory.value);
       setCurrentLabel(newCategory.label);
    }
 
    const onAddClick = () => {
       if(title.trim()) {
-         const newTask = {
+         const newTask:Omit<TTask, 'id'> = {
             title: title,
             category: currentLabel,
             completed: false
@@ -78,7 +86,7 @@ export const Panel = ({isPanelOpen, setPanelOpen}) => {
       setPanelOpen(false)
    }
 
-   const newTaskToast = (newTask, categoryName) => {
+   const newTaskToast = (newTask: string, categoryName: string) => {
       toast.success(`You added a new task: "${newTask}" to the ${categoryName} Category`, {
          position: "top-left",
          autoClose: 1500,

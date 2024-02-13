@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { Header } from "../components/Header/Header"
-import { TodosContext } from "../context/context"
+import { TodosContext, TodosContextValue } from "../context/context"
 import { Item } from "../components/Item/Item"
 import { Link } from "react-router-dom"
 import styles from './HomePage.module.scss'
@@ -8,20 +8,21 @@ import { Task } from "../components/Task/Task"
 import { tasksFilter } from "../utils/utils"
 import { ButtonIcon } from "../components/shared/ButtonIcon/ButtonIcon"
 import { IoIosArrowBack } from "react-icons/io";
+import { TTask } from "../types"
 
 
 
-export const HomePage = () => {
+export const HomePage:React.FC = () => {
 
    const {
       categories,
       isCatSuccess,
       responceTasks,
       isTasksSuccess
-   } = useContext(TodosContext)
+   } = useContext<TodosContextValue>(TodosContext)
 
-   const activeTasks = tasksFilter(responceTasks, false);
-   const completedTasks = tasksFilter(responceTasks, true);
+   const activeTasks: TTask[] = tasksFilter(responceTasks, false);
+   const completedTasks: TTask[] = tasksFilter(responceTasks, true);
 
    return (
       <div>
@@ -29,17 +30,24 @@ export const HomePage = () => {
          <section className={styles.listsContainer}>
             <div className={styles.activeList} id="active">
                <h2 className={styles.titles}>{activeTasks.length ? `Active Tasks` : `There Are No Active Tasks Yet`}</h2>
-               <ul>{isTasksSuccess && activeTasks?.map(active => <Task key={active.title} {...active}/>)}</ul>
+               <ul>
+                  {isTasksSuccess   ? activeTasks?.map(active => <Task key={active.title} {...active}/>)
+                                    : <Task title='Loading..' />}
+               </ul>
             </div>
             <div className={styles.categoryList} id="categories">
                <h2 className={styles.titles}>Categories</h2>
-               {isCatSuccess && categories?.map((obj) => {
+               {isCatSuccess  ? categories?.map((obj) => {
                   return <Link key={obj.id} to={obj.category}><Item responceTasks={responceTasks} {...obj}/></Link>
-               })}
+               })
+                              : <Item />}
             </div>
             <div className={styles.completedList} id="completed">
                <h2 className={styles.titles}>{completedTasks.length ? `Completed Tasks` : `There Are No Completed Tasks Yet`}</h2>
-               <ul>{isTasksSuccess && completedTasks?.map(completed => <Task key={completed.title} {...completed}/>)}</ul>
+               <ul>
+                  {isTasksSuccess   ? completedTasks?.map(completed => <Task key={completed.title} {...completed}/>)
+                                    : <Task title='Loading..' />}
+               </ul>
             </div>
          </section>
          <div style={{position: 'fixed', bottom:'14px', left:'50px'}} className={styles.toTop}>

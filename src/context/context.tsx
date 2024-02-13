@@ -1,17 +1,42 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createContext, useEffect, useState } from "react";
+import { InvalidateQueryFilters, MutationFunction, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { addTask, getCategories, getTasks, toggleCheck, deleteTask, updateTitle } from "../services/api/todos.service";
-import { todoCounter } from "../utils/utils";
-import { getPictures } from "../services/api/pictures.service";
-import { allTasksCounter } from "../utils/allTasksCounter";
+import { TCategory, TTask } from "../types";
 
-export const TodosContext = createContext({});
+export interface TodosContextValue {
+   categories: TCategory[];
+   isCatSuccess: boolean;
+   responceTasks: TTask[];
+   isTasksSuccess: boolean;
+   isCatLoading: boolean;
+   toggleCheckMutation: MutationFunction<void, TTask>;
+   addTaskMutation: MutationFunction<void, TTask>;
+   deleteTaskMutation: MutationFunction<void, TTask>;
+   updateTitleMutation: MutationFunction<void, TTask>;
+}
 
-export const TodosProvider = ({children}) => {
+export const TodosContext = createContext<TodosContextValue>({
+   categories: [],
+   responceTasks: [],
+   isCatSuccess: false,
+   isTasksSuccess: false,
+   isCatLoading: true,
+   toggleCheckMutation: async () => {},
+   addTaskMutation: async () => {},
+   deleteTaskMutation: async () => {},
+   updateTitleMutation: async () => {}
+});
+
+interface TodosProviderProps {
+   children: ReactNode;
+}
+
+
+export const TodosProvider = ({children}: TodosProviderProps) => {
 
    const queryClient = useQueryClient()
 
-   const [categories, setCategories] = useState([])
+   const [categories, setCategories] = useState<TCategory[]>([])
 
 
    const {data: responceCategories, isLoading: isCatLoading, isSuccess: isCatSuccess} = useQuery({
@@ -24,31 +49,31 @@ export const TodosProvider = ({children}) => {
       queryFn: () => getTasks()
    })
 
-   const {mutate: toggleCkeckMutation} = useMutation({
-      mutationFn: (task) => toggleCheck(task),
+   const {mutate: toggleCheckMutation} = useMutation({
+      mutationFn: (task: TTask) => toggleCheck(task),
       onSuccess: () => {
-         queryClient.invalidateQueries(['tasks'])
+         queryClient.invalidateQueries(['tasks'] as InvalidateQueryFilters)
       }
    })
 
    const {mutate: addTaskMutation} = useMutation({
-      mutationFn: (newTask) => addTask(newTask),
+      mutationFn: (newTask: TTask) => addTask(newTask),
       onSuccess: () => {
-         queryClient.invalidateQueries(['tasks'])
+         queryClient.invalidateQueries(['tasks'] as InvalidateQueryFilters)
       }
    })
 
    const {mutate: deleteTaskMutation} = useMutation({
-      mutationFn: (task) => deleteTask(task),
+      mutationFn: (task: TTask) => deleteTask(task),
       onSuccess: () => {
-         queryClient.invalidateQueries(['tasks'])
+         queryClient.invalidateQueries(['tasks'] as InvalidateQueryFilters)
       }
    })
 
    const {mutate: updateTitleMutation} = useMutation({
-      mutationFn: (updatedTask) => updateTitle(updatedTask),
+      mutationFn: (updatedTask: TTask) => updateTitle(updatedTask),
       onSuccess: () => {
-         queryClient.invalidateQueries(['tasks'])
+         queryClient.invalidateQueries(['tasks'] as InvalidateQueryFilters)
       }
    })
 
@@ -57,14 +82,15 @@ export const TodosProvider = ({children}) => {
          setCategories(responceCategories);
       }
 
-   }, [isCatSuccess])
+   }, [isCatSuccess, responceCategories])
 
    const value = {
       categories,
       isCatSuccess,
       responceTasks,
       isTasksSuccess,
-      toggleCkeckMutation,
+      isCatLoading,
+      toggleCheckMutation,
       addTaskMutation,
       deleteTaskMutation,
       updateTitleMutation,

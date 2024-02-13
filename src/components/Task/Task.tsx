@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { TTask } from '../../types'
 import styles from './Task.module.scss'
-import { TodosContext } from '../../context/context';
+import { TodosContext, TodosContextValue } from '../../context/context';
 import { BsTrash } from "react-icons/bs";
 import { LuPenLine } from "react-icons/lu";
 import { MdDone } from "react-icons/md";
@@ -10,26 +10,24 @@ import defaultImage from '../../assets/images/defaultImage.png';
 import { toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
 
-
-export const Task = (task) => {
+export const Task:React.FC<TTask> = (task: TTask) => {
 
    const {id, category, title, completed} = task;
 
-   const [titleText, setTitleText] = useState('')
-   const [isChecked, setChecked] = useState(completed);
-   const [isUpdating, setUpdating] = useState(false);
+   const [titleText, setTitleText] = useState<string>('')
+   const [isChecked, setChecked] = useState<boolean>(completed);
+   const [isUpdating, setUpdating] = useState<boolean>(false);
    
    useEffect(() => {
       setTitleText(title)
    }, [])
 
-
    const {
-      toggleCkeckMutation,
+      toggleCheckMutation,
       deleteTaskMutation,
       updateTitleMutation,
       categories,
-   } = useContext(TodosContext)
+   } = useContext<TodosContextValue>(TodosContext)
 
    const updateToast = () => {
       toast.info('Task was updated!', {
@@ -45,7 +43,7 @@ export const Task = (task) => {
          });
    }
 
-   const deleteToast = (text) => {
+   const deleteToast = (text: string) => {
       toast.warning(`"${text}" was deleted`, {
          position: "top-left",
          autoClose: 1500,
@@ -62,7 +60,7 @@ export const Task = (task) => {
    const isCheckedClass = isChecked ? `${styles.checkedClass} ${styles.titleText}` : `${styles.titleText}` ;
 
    const handlerCheck = () => {
-      toggleCkeckMutation(task);
+      toggleCheckMutation(task);
       setChecked(prev => !prev)
    }
    
@@ -89,9 +87,6 @@ export const Task = (task) => {
          return c.link;
       }
    })
-
-   
-
 
    return (
       <li className={styles.outer}>
