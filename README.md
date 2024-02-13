@@ -1,11 +1,11 @@
-<h1>Todolist App</h1>
-<h2><a href='#'>Click to see Demo</a></h2>
+<h1>Todolist App <a href='#'>Click to see Demo</a></h1>
 <h2>React, Typescript, Tailwind, SCSS Modules, React-Query (TanStack Query), Vite<h2>
-<h3>react-icons, react-select, react-toastify, react-router-dom</h2>
+
+<h4>react-icons, react-select, react-toastify, react-router-dom</h2>
 
 <p>This is a TodoList application built with React and TypeScript. The app allows users to create, update, and delete tasks in various categories. It also provides features like marking tasks as completed and filtering tasks based on category.</p>
 
-<h3>Features</h3>
+<h3>Features:</h3>
 <ul>
   <li>Create new tasks with specified category and title.</li>
   <li>Update the completion status of tasks.</li>
