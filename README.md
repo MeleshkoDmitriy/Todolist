@@ -1,5 +1,5 @@
 <h1>Todolist App <a href='#'>Click to see Demo</a></h1>
-<h2>React, Typescript, Tailwind, SCSS Modules, React-Query (TanStack Query)<h2>
+<h2>React, Typescript, TailwindCSS, SCSS Modules, React-Query (TanStack Query)<h2>
 
 <b>react-icons, react-select, react-toastify, react-router-dom</h2>
 

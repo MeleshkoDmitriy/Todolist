@@ -10,6 +10,7 @@ import defaultImage from '../../assets/images/defaultImage.png';
 import { toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
 
+
 export const Task:React.FC<TTask> = (task: TTask) => {
 
    const {id, category, title, completed} = task;
