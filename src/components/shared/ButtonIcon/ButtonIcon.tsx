@@ -3,7 +3,7 @@ import styles from './ButtonIcon.module.scss';
 
 interface ButtonIconProps extends ComponentPropsWithoutRef<'button'> {
    iconColor: 'blue' | 'white' | 'red' | 'green' | 'plus' | 'smallplus';
-   onClick: MouseEventHandler<HTMLButtonElement>;
+   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const ButtonIcon: FC<ButtonIconProps> = ({ children, iconColor, onClick }) => {

@@ -8,7 +8,7 @@ export const NotFoundPage:React.FC = () => {
    return (
       <section className={styles.wrapper}>
          <Link to='/'>
-            <ButtonText buttonColor="blue" className={styles.btn}>
+            <ButtonText onClick={() => console.log('Home Page Route')} buttonColor="blue" className={styles.btn}>
                   <IoIosArrowBack style={{display: 'inline-block'}}/>Home Page
             </ButtonText>
          </Link>

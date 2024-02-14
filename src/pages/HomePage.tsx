@@ -21,6 +21,19 @@ export const HomePage:React.FC = () => {
       isTasksSuccess
    } = useContext<TodosContextValue>(TodosContext)
 
+   const loadingTask = {
+      id: 0,
+      title: 'Loading..',
+      category: 'Personal',
+      completed: false
+   }
+
+   const loadingCategory = {
+      category: 'Loading..',
+      link: undefined,
+   }
+   
+
    const activeTasks: TTask[] = tasksFilter(responceTasks, false);
    const completedTasks: TTask[] = tasksFilter(responceTasks, true);
 
@@ -32,7 +45,7 @@ export const HomePage:React.FC = () => {
                <h2 className={styles.titles}>{activeTasks.length ? `Active Tasks` : `There Are No Active Tasks Yet`}</h2>
                <ul>
                   {isTasksSuccess   ? activeTasks?.map(active => <Task key={active.title} {...active}/>)
-                                    : <Task title='Loading..' />}
+                                    : <Task {...loadingTask} />}
                </ul>
             </div>
             <div className={styles.categoryList} id="categories">
@@ -40,13 +53,13 @@ export const HomePage:React.FC = () => {
                {isCatSuccess  ? categories?.map((obj) => {
                   return <Link key={obj.id} to={obj.category}><Item responceTasks={responceTasks} {...obj}/></Link>
                })
-                              : <Item />}
+                              : <Item {...loadingCategory} />}
             </div>
             <div className={styles.completedList} id="completed">
                <h2 className={styles.titles}>{completedTasks.length ? `Completed Tasks` : `There Are No Completed Tasks Yet`}</h2>
                <ul>
                   {isTasksSuccess   ? completedTasks?.map(completed => <Task key={completed.title} {...completed}/>)
-                                    : <Task title='Loading..' />}
+                                    : <Task {...loadingTask} />}
                </ul>
             </div>
          </section>

@@ -9,8 +9,8 @@ import { TTask } from '../../types';
 
 interface ItemProps {
    category: string;
-   link: string;
-   responceTasks: TTask[];
+   link: string | undefined;
+   responceTasks?: TTask[];
 }
 
 export const Item:React.FC<ItemProps> = ({category, link, responceTasks }) => {
