@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { TTask, TTodo } from "../types";
+import { TTask } from "../types";
 import { Task } from "../components/Task/Task";
 import { useContext } from "react";
 import { TodosContext, TodosContextValue } from "../context/context";
@@ -32,7 +32,7 @@ export const CategoryPage:React.FC<CategoryPageProps> = ({ category }) => {
          <div className={styles.header}>
             <div className={styles.backBtn}>
                <Link to='/'>
-                  <ButtonIcon iconColor="white">
+                  <ButtonIcon onClick={() => console.log('Back to Home Page')} iconColor="white">
                      <IoIosArrowBack />
                   </ButtonIcon>
                </Link>

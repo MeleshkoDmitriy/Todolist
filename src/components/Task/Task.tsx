@@ -13,7 +13,7 @@ import { Bounce } from 'react-toastify';
 
 export const Task:React.FC<TTask> = (task: TTask) => {
 
-   const {id, category, title, completed} = task;
+   const {category, title, completed} = task;
 
    const [titleText, setTitleText] = useState<string>('')
    const [isChecked, setChecked] = useState<boolean>(completed);
@@ -91,7 +91,7 @@ export const Task:React.FC<TTask> = (task: TTask) => {
 
    return (
       <li className={styles.outer}>
-         <div id={task.id} className={styles.wrapper}>
+         <div className={styles.wrapper}>
             <div className={styles.categoryIcon}>
                <img src={imageLink ? imageLink.link : defaultImage} alt="category" title={category}/>
             </div>

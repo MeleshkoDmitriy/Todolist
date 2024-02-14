@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import styles from './Panel.module.scss';
 import { HiOutlinePlus } from "react-icons/hi2";
 import { TodosContext } from '../../context/context';
@@ -9,9 +9,10 @@ import { toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
 import { TTask } from '../../types';
 
+
 interface PanelProps {
    isPanelOpen: boolean;
-   setPanelOpen: () => void
+   setPanelOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export const Panel:React.FC<PanelProps> = ({isPanelOpen, setPanelOpen}) => {
@@ -55,15 +56,23 @@ export const Panel:React.FC<PanelProps> = ({isPanelOpen, setPanelOpen}) => {
       return currentCategory ? options.find(category => category.value === currentCategory) : ''
    }
 
-   interface ISelectCategory {
+   interface OptionType {
       value: string;
       label: string;
-   }
+    }
 
-   const onChangeCategory = (newCategory: ISelectCategory) => {
-      setCurrentCategory(newCategory.value);
-      setCurrentLabel(newCategory.label);
-   }
+   type PropsValue<OptionType> = OptionType | OptionType[] | null | undefined;
+
+    
+    const onChangeCategory = (newCategory: OptionType | null) => {
+      if (newCategory) {
+        const selectedCategory = newCategory as OptionType;
+        setCurrentCategory(selectedCategory.value);
+        setCurrentLabel(selectedCategory.label);
+      }
+    }
+    
+    
 
    const onAddClick = () => {
       if(title.trim()) {
@@ -134,7 +143,7 @@ export const Panel:React.FC<PanelProps> = ({isPanelOpen, setPanelOpen}) => {
                   <div className={styles.category}>
                      <label htmlFor=''>Category</label>
                      <Select  className={styles.select} 
-                              value={getCategory()} 
+                              value={getCategory()  as PropsValue<OptionType>} 
                               onChange={onChangeCategory} 
                               options={isCatSuccess ? options : defaultOptions}
                               isLoading={isCatLoading}

@@ -35,7 +35,7 @@ export const Header:React.FC = () => {
             </div>
             <div className={styles.bodyImage}>
                <img src={defaultUser} alt="User" title='profile avatar'/>
-               <ButtonIcon iconColor='smallplus'>
+               <ButtonIcon onClick={() => console.log('upload avatar')} iconColor='smallplus'>
                   <HiOutlinePlus />
                </ButtonIcon>
             </div>

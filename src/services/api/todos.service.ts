@@ -20,7 +20,7 @@ export const addTask = async (newTask: TTask): Promise<void> => {
    return await axios.post('/tasks', newTask)
 }
 
-export const deleteTask = async (taskId: TTask): Promise<void> => {
+export const deleteTask = async (taskId: number): Promise<void> => {
    return await axios.delete(`/tasks/${taskId}`)
 }
 

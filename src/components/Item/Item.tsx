@@ -29,7 +29,7 @@ export const Item:React.FC<ItemProps> = ({category, link, responceTasks }) => {
             <span>
                {categoryLength} Task(s)</span>
          </div>
-         <ButtonIcon iconColor='blue'>
+         <ButtonIcon onClick={() => console.log('category clicked')} iconColor='blue'>
             <BsThreeDotsVertical />
          </ButtonIcon>
       </div>
