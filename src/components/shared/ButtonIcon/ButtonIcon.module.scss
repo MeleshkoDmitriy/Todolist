@@ -44,8 +44,8 @@
 
 
 .smallplus {
-   @apply transition-all duration-200 h-[30px] w-[30px] bg-white relative bottom-5 left-16 hover:scale-110 border-2 border-green-500 flex justify-center items-center;
+   @apply transition-all duration-200 h-[30px] w-[30px] bg-white relative bottom-5 left-16 hover:scale-110 border-2 border-blue-500 flex justify-center items-center;
 }
 .text_smallplus {
-   @apply transition-all duration-200 text-green-500 text-xl;
+   @apply transition-all duration-200 text-blue-500 text-xl;
 }
