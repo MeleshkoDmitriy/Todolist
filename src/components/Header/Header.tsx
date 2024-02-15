@@ -36,7 +36,7 @@ export const Header: React.FC = () => {
             </div>
             <div className={styles.bodyImage}>
                <img src={defaultUser} alt="User" title='profile avatar' />
-               <a href="https://github.com/MeleshkoDmitriy/Todolist">
+               <a href="https://github.com/MeleshkoDmitriy/Todolist" target='_blank'>
                   <ButtonIcon onClick={() => console.log('GitHub')} iconColor='smallplus'>
                      <BsGithub />
                   </ButtonIcon>
