@@ -1,5 +1,6 @@
-<h1>Todolist App <a href='https://dynamic-kitten-7e1916.netlify.app/'>Click to see Demo</a></h1>
-<h2>React, Typescript, TailwindCSS, SCSS Modules, React-Query (TanStack Query)<h2>
+<h1>Todolist App</h1>
+<h2><a href='https://dynamic-kitten-7e1916.netlify.app/'>Click to see Demo</a></h2>
+<h2>React, Typescript, TailwindCSS, SCSS Modules, React-Query (TanStack Query)</h2>
 
 <b>react-icons, react-select, react-toastify, react-router-dom</h2>
 
